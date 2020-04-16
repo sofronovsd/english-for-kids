@@ -1,0 +1,22 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0 5%;
+}
+
+.header {
+  margin-top: 50px;
+  height: 100px;
+  background-color: gray;
+}
+
+.main {
+  height: 1000px;
+  background-color: bisque;
+}
+
+/*# sourceMappingURL=style.css.map */

@@ -102,3 +102,7 @@ dist
 
 # TernJS port file
 .tern-port
+
+# IDEA
+.idea
+sofronovsd-RS2020Q1.iml
