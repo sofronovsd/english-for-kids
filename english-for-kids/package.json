@@ -5,6 +5,7 @@
   "main": "script.js",
   "scripts": {
     "style": "sass --watch src/sass/style.scss english-for-kids/src/sass/style.css",
+    "fix": "npx eslint src/script.js --fix",
     "build": "webpack --mode production",
     "start": "webpack-dev-server --mode development --open --hot"
   },
@@ -25,6 +26,9 @@
     "clean-webpack-plugin": "^3.0.0",
     "copy-webpack-plugin": "^5.1.1",
     "css-loader": "^3.5.2",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.20.2",
     "favicons-webpack-plugin": "^3.0.1",
     "file-loader": "^6.0.0",
     "html-loader": "^1.1.0",

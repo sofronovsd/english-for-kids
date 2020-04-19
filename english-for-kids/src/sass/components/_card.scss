@@ -12,6 +12,19 @@
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .4);
   transition: box-shadow .25s linear, transform .7s;
 
+  &_cover {
+
+    .card__front, .card__back {
+      background-size: cover;
+      background-position: 50%;
+    }
+
+    .card__title, .card__rotate {
+      display: none;
+      //opacity: 0;
+    }
+  }
+
   &:hover {
     box-shadow: -1px 5px 15px 0 rgba(0,0,0,.5);
   }
