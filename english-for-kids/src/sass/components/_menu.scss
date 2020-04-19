@@ -1,0 +1,123 @@
+.menu {
+  position: absolute;
+  display: block;
+  transition: all .5s ease-in-out;
+  top: 11px;
+  left: 0;
+  z-index: 3;
+  user-select: none;
+
+
+  &__input {
+    display: block;
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    opacity: 0;
+    z-index: 2;
+
+    &:checked ~ ul {
+      transform: scale(1);
+      opacity: 1;
+    }
+
+    &:checked ~ .menu__burger {
+      transform: translateX(-50px);
+      background: transparent;
+
+      &::before {
+        transform: rotate(45deg) translate(35px, -35px);
+      }
+
+      &::after {
+        transform: rotate(-45deg) translate(35px, 35px);
+      }
+    }
+  }
+
+  &__burger {
+    position: relative;
+    top: 10px;
+    width: 30px;
+    height: 4px;
+    background: #cdcdcd;
+    border-radius: 5px;
+    transition: all .5s ease-in-out;
+    z-index: 1;
+
+    &::before, &::after {
+      content: '';
+      position: absolute;
+      width: 30px;
+      height: 4px;
+      background: #cdcdcd;
+      border-radius: 5px;
+      transition: all .5s ease-in-out;
+    }
+
+    &::before {
+      transform: translateY(-10px);
+    }
+
+    &::after {
+      transform: translateY(10px);
+    }
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    position: absolute;
+    width: 380px;
+    height: calc(100vh + 100px);
+    margin: -100px 0 0;
+    padding: 125px 50px 50px;
+    left: calc(675px - 50vw);
+    background: linear-gradient(40deg,#ffd86f,#fc6262);
+    list-style-type: none;
+    transform-origin: 0 0;
+    transform: translate(-100%);
+    transition: transform .5s cubic-bezier(.77,.2,.05,1);
+
+    & li {
+      padding: 10px 0;
+      margin-left: 60px;
+    }
+
+    @media (max-width: 1430px) {
+      left: calc(500px - 50vw);
+    }
+
+    @media (max-width: 1080px) {
+      left: calc(325px - 50vw);
+    }
+    @media (max-width: 730px) {
+      width: 320px;
+      left: calc(150px - 50vw);
+    }
+
+    &_green {
+      background: linear-gradient(40deg, #00bf82, #0099ae);
+    }
+  }
+
+  &__item {
+    font-family: Roboto, sans-serif;
+    font-size: 22px;
+    color: #fff;
+    text-decoration: none;
+
+    &:hover {
+      color: #fff;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
+    &_active {
+      text-decoration: underline;
+    }
+  }
+
+}

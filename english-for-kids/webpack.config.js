@@ -2,17 +2,17 @@ const webpack = require('webpack');
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
 
 module.exports = () => {
 
     const config = {
-        mode: 'development',
         devtool: 'source-map',
-        watch: true,
-        entry: './english-for-kids/src/script.js',
+        entry: './src/script.js',
         output: {
-            path: path.join(__dirname, '/english-for-kids/dist'),
+            path: path.join(__dirname, '/dist'),
             filename: 'script.js'
         },
 
@@ -30,34 +30,47 @@ module.exports = () => {
                 },
                 {
                     test: /\.scss$/,
-                    use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
+                    use: [MiniCssExtractPlugin.loader, 'css-loader', 'resolve-url-loader', 'sass-loader']
                 },
                 {
-                    test: /\.(png|jpe?g|gif)$/i,
+                    test: /\.(png|jpe?g|gif|svg|ico)$/i,
                     use: [
                         {
-                            loader: 'file-loader',
+                            loader: 'file-loader'
                         },
                     ],
-                },
-                {
-                    test: /\.html$/i,
-                    loader: 'html-loader',
-                },
+                }
             ]
         },
 
         plugins: [
             new CleanWebpackPlugin(),
+            new FaviconsWebpackPlugin('./src/icon/favicon.ico'),
+            new CopyPlugin([
+                {
+                    from: './src/img', to: './img'
+                },
+                {
+                    from: './src/audio', to: './audio'
+                },
+                {
+                    from: './src/icon', to: ''
+                }
+            ]),
             new HtmlWebpackPlugin({
-                template: './english-for-kids/src/index.html'
+                template: './src/index.html'
             }),
             new MiniCssExtractPlugin({
                 filename: 'style.css'
             }),
         ],
 
-    }
+        devServer: {
+            port: 8080,
+            contentBase: path.join(__dirname, 'dist'),
+        }
+
+    };
 
     return config;
-}
+};

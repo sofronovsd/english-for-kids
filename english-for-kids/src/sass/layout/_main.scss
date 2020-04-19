@@ -1,4 +1,8 @@
 .main {
-  height: 1000px;
-  background-color: bisque;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 20px 15px;
+  max-width: 1440px;
+  margin: auto;
 }

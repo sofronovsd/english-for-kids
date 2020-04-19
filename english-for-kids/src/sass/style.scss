@@ -1,5 +1,20 @@
+
+// Bootstrap
+@import "~bootstrap";
+
+// Base
 @import "base/base";
 
 // Layout
 @import "layout/header";
 @import "layout/main";
+
+
+// Containers
+@import "containers/switch-container";
+
+// Components
+@import "src/sass/components/menu";
+@import "components/switch";
+@import "components/main-card";
+@import "components/card";

@@ -1,0 +1,97 @@
+.switch {
+
+  right: 0;
+  display: inline-block;
+  vertical-align: top;
+  width: 120px;
+  height: 40px;
+  padding: 3px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: inset 0 -1px #fff, inset 0 1px 1px rgba(0,0,0,.05);
+  cursor: pointer;
+  background-image: linear-gradient(180deg,#eee,#fff 25px);
+
+  &__input {
+    position: absolute;
+    left: 0;
+    opacity: 0;
+
+    &:checked~.switch__label {
+      background: linear-gradient(40deg,#00bf82,#0099ae);
+      box-shadow: inset 0 1px 2px rgba(0,0,0,.15), inset 0 0 3px rgba(0,0,0,.2);
+    }
+
+    &:checked~.switch__label:before {
+      opacity: 0;
+    }
+
+    &:checked~.switch__label:after {
+      opacity: 1;
+    }
+
+    &:checked~.switch__handle {
+      left: 80px;
+      box-shadow: -1px 1px 5px rgba(0,0,0,.2);
+    }
+  }
+
+  &__label {
+    position: relative;
+    display: block;
+    height: inherit;
+    font-size: 18px;
+    line-height: 40px;
+    text-transform: uppercase;
+    background: linear-gradient(40deg,#ffd86f,#fc6262);
+    border-radius: inherit;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,.12), inset 0 0 2px rgba(0,0,0,.15);
+    transition: .15s ease-out;
+
+    &:before {
+      content: attr(data-off);
+      right: 15px;
+      color: #fff;
+      text-shadow: 0 1px hsla(0,0%,100%,.5);
+    }
+
+    &:after {
+      content: attr(data-on);
+      left: 15px;
+      color: #fff;
+      text-shadow: 0 1px rgba(0,0,0,.2);
+      opacity: 0;
+    }
+
+    &:after, &:before {
+      position: absolute;
+      top: 0;
+      transition: inherit;
+    }
+  }
+
+  &__handle {
+    position: absolute;
+    top: 6px;
+    left: 10px;
+    width: 33px;
+    height: 33px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 5px rgba(0,0,0,.2);
+    background-image: linear-gradient(180deg,#fff 40%,#f0f0f0);
+    transition: left .15s ease-out;
+
+    &:before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin: -6px 0 0 -6px;
+      width: 12px;
+      height: 12px;
+      border-radius: 6px;
+      box-shadow: inset 0 1px rgba(0,0,0,.02);
+      background-image: linear-gradient(180deg,#eee,#fff);
+    }
+  }
+}
