@@ -1,0 +1,28 @@
+.button {
+  box-sizing: border-box;
+  padding: 20px 25px;
+  margin: 20px auto;
+  width: 100%;
+  max-width: 650px;
+  height: 65px;
+  background: linear-gradient(40deg,#ffd86f,#fc6262);
+  color: #fff;
+  border-radius: 10px;
+  outline: 0!important;
+  border-width: 1px;
+  transition: .3s;
+
+  &_repeat {
+    width: 65px;
+    font-size: 0;
+    background-image: url('../../img/repeat.svg'),linear-gradient(40deg,#ffd86f,#fc6262);
+    border-radius: 50%;
+    background-repeat: no-repeat;
+    background-size: 32px 32px,cover;
+    background-position: 50%;
+  }
+
+  &_hidden {
+    display: none;
+  }
+}

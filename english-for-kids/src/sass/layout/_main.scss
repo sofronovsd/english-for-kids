@@ -5,4 +5,44 @@
   padding: 20px 15px;
   max-width: 1440px;
   margin: auto;
+
+  &__buttons {
+    width: 100%;
+    text-align: center;
+  }
+
+  &__rating {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    max-width: 1350px;
+    margin: 0 auto;
+    height: 40px;
+    overflow-x: hidden;
+    line-height: 36px;
+    font-size: 36px;
+    color: #fc6262;
+  }
+
+  h2 {
+    width: 100%;
+    text-align: center;
+    color: crimson;
+  }
+
+  h3 {
+    text-align: center;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-rows: repeat(9, 1fr);
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 10px;
+  }
+
+  &__info {
+    display: flex;
+    justify-content: space-between;
+  }
 }

@@ -1,0 +1,13 @@
+.star {
+
+  flex-shrink: 0;
+  width: 40px;
+  min-width: 40px;
+  height: 40px;
+  background-size: 40px 40px;
+  background-image: url("../../img/star.svg");
+
+  &_win {
+    background-image: url("../../img/star-win.svg");
+  }
+}

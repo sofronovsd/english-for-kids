@@ -21,7 +21,6 @@
 
     .card__title, .card__rotate {
       display: none;
-      //opacity: 0;
     }
   }
 
@@ -44,6 +43,13 @@
     -webkit-transition: .3s;
     transition: .3s;
     background-image: url("../../img/cry.jpg");
+  }
+
+  &__front {
+
+    &_inactive {
+      opacity: 0.5;
+    }
   }
 
   &__rotate {

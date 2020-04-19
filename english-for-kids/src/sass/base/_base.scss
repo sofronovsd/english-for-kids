@@ -4,6 +4,19 @@
   box-sizing: border-box;
 }
 
-body {
+button {
 
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-transform: none;
+  text-indent: 0;
+  text-shadow: none;
+  display: inline-block;
+  text-align: center;
+  align-items: flex-start;
+  cursor: default;
+  font: 400 24px Arial;
+  border-style: outset;
+  border-color: buttonface;
+  border-image: initial;
 }
