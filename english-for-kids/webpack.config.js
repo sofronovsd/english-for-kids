@@ -33,7 +33,7 @@ module.exports = () => {
                     use: [MiniCssExtractPlugin.loader, 'css-loader', 'resolve-url-loader', 'sass-loader']
                 },
                 {
-                    test: /\.(png|jpe?g|gif|svg|ico)$/i,
+                    test: /\.(png|jpe?g|gif|svg)$/i,
                     use: [
                         {
                             loader: 'file-loader'
@@ -45,7 +45,7 @@ module.exports = () => {
 
         plugins: [
             new CleanWebpackPlugin(),
-            new FaviconsWebpackPlugin('./src/icon/favicon.ico'),
+            new FaviconsWebpackPlugin('./src/img/big.jpg'),
             new CopyPlugin([
                 {
                     from: './src/img', to: './img'

@@ -67,11 +67,11 @@ const initMainMenu = () => {
 const updateDataInfo = (key) => {
   let value = window.localStorage.getItem(key);
   if (value !== null) {
-    value += 1;
+    value = Number(value) + 1;
   } else {
     value = 1;
   }
-  window.localStorage.setItem(key, value);
+  window.localStorage.setItem(key, String(value));
 };
 
 const initCards = () => {
