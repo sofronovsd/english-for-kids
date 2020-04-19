@@ -228,20 +228,23 @@ const initStatistics = () => {
       const translationElement = document.createElement('span');
       translationElement.textContent = card.translation;
       const correct = document.createElement('span');
-      const correctData = window.localStorage.getItem(`${card.word}-success`);
+      let correctData = window.localStorage.getItem(`${card.word}-success`);
       correct.textContent = correctData !== null ? correctData : 0;
       const incorrect = document.createElement('span');
-      const incorrectData = window.localStorage.getItem(`${card.word}-failure`);
+      let incorrectData = window.localStorage.getItem(`${card.word}-failure`);
       incorrect.textContent = incorrectData !== null ? incorrectData : 0;
       const ratioElement = document.createElement('span');
 
       let result;
-      if (incorrectData) {
-        result = correctData / incorrectData;
-        result = `${Math.round(result * 100)}%`;
-      } else if (correctData) {
-        result = '100%';
-      } else {
+      if (correctData && correctData > 0) {
+        if (incorrectData === null) {
+          incorrectData = 0;
+        }
+        correctData = Number(correctData);
+        incorrectData = Number(incorrectData);
+        result = correctData / (correctData + incorrectData);
+        result = Math.round(result * 100) + '%';
+      } else  {
         result = '0%';
       }
 
