@@ -377,7 +377,7 @@ const initStatistics = () => {
 };
 
 const getRenderedMenuItems = () => {
-  categories.map((category) => new MenuItem(category.title).render());
+  return categories.map((category) => new MenuItem(category.title).render());
 };
 
 const createSideMenuItems = () => {
