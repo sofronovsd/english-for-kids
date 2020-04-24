@@ -3,9 +3,7 @@ export class RatingPanel {
     }
 
     render() {
-        let template = '\n<div class="main__rating">';
-        template += '\n</div>';
-
-        return template;
+        return '<div class="main__rating">\n' +
+            '</div>\n';
     }
 }

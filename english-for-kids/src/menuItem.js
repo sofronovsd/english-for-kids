@@ -4,10 +4,8 @@ export class MenuItem {
     }
 
     render() {
-        let template = `\n<li>`;
-        template += `\n<a class="menu__item" href="#">${this.text}</a>`;
-        template += `\n</li>`;
-
-        return template;
+        return `<li>\n` +
+            `<a class="menu__item" href="#">${this.text}</a>\n` +
+            `</li>\n`;
     }
 }

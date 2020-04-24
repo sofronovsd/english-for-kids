@@ -6,10 +6,10 @@ export class Category {
     }
 
     render() {
-        let template = '\n<a class="main-card main-card_green">';
-        this.image && (template += `\n<img src="${this.image}" alt="${this.title}">`);
-        template += `\n${this.title}`;
-        template += '\n</a>';
+        let template = '<a class="main-card main-card_green">\n';
+        this.image && (template += `<img src="${this.image}" alt="${this.title}">\n`);
+        template += `${this.title}\n` +
+            `</a>\n`;
 
         return template;
     }

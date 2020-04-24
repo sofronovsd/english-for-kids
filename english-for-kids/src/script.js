@@ -9,11 +9,7 @@ import { Star } from './star';
 
 const MAIN_PAGE = 'Main Page';
 const STATISTICS = 'Statistics';
-const GRID_HEADER_1 = 'Word';
-const GRID_HEADER_2 = 'Translation';
-const GRID_HEADER_3 = 'Correct Answers';
-const GRID_HEADER_4 = 'Incorrect Answers';
-const GRID_HEADER_5 = '%';
+const GRID_HEADERS = ['Word', 'Translation', 'Correct Answers', 'Incorrect Answers', '%'];
 
 let isGameStarted;
 let shuffledCards;
@@ -163,7 +159,9 @@ const showFailResultScreen = () => {
 const switchToNextCard = () => {
   currentIndex += 1;
   currentCard = shuffledCards[currentIndex];
-  setTimeout(() => { reproduceAudioBySource(currentCard.getAttribute('data-audio')); }, 1000);
+  setTimeout(() => {
+    reproduceAudioBySource(currentCard.getAttribute('data-audio'));
+  }, 1000);
 };
 
 const checkIsGameFinished = () => {
@@ -270,6 +268,22 @@ const initCardsByCategoryName = (categoryName) => {
   addStartButtonClickHandler();
 };
 
+const applyGreenTheme = (card) => {
+  card.classList.add('main-card_green');
+};
+
+const removeGreenTheme = (card) => {
+  card.classList.remove('main-card_green');
+};
+
+const coverCard = (card) => {
+  card.classList.add('card_covered');
+};
+
+const uncoverCard = (card) => {
+  card.classList.remove('card_covered');
+};
+
 const handleSwitcherChange = (e) => {
   const { target } = e;
   const mainCards = document.querySelectorAll('.main-card');
@@ -278,17 +292,17 @@ const handleSwitcherChange = (e) => {
   const button = getStartButton();
 
   if (target.checked) {
-    mainCards.forEach((card) => card.classList.add('main-card_green'));
+    mainCards.forEach((card) => applyGreenTheme(card));
     menuList.classList.add('menu__list_green');
-    cards.forEach((card) => card.classList.remove('card_cover'));
+    cards.forEach((card) => uncoverCard(card));
 
     if (button) {
       button.classList.add('button_hidden');
     }
   } else {
-    mainCards.forEach((card) => card.classList.remove('main-card_green'));
+    mainCards.forEach((card) => removeGreenTheme(card));
     menuList.classList.remove('menu__list_green');
-    cards.forEach((card) => card.classList.add('card_cover'));
+    cards.forEach((card) => coverCard(card));
 
     if (button) {
       button.classList.remove('button_hidden');
@@ -311,29 +325,21 @@ const createSpanWithContent = (content) => {
 };
 
 const createCategoryGridHeader = (grid) => {
-  const gridHeader1 = createSpanWithContent(GRID_HEADER_1);
-  const gridHeader2 = createSpanWithContent(GRID_HEADER_2);
-  const gridHeader3 = createSpanWithContent(GRID_HEADER_3);
-  const gridHeader4 = createSpanWithContent(GRID_HEADER_4);
-  const gridHeader5 = createSpanWithContent(GRID_HEADER_5);
+  const gridHeaders = [];
+  GRID_HEADERS.forEach((gridHeader) => {
+    gridHeaders.push(createSpanWithContent(gridHeader));
+  });
 
-  grid.append(gridHeader1, gridHeader2, gridHeader3, gridHeader4, gridHeader5);
+  grid.append(gridHeaders);
 };
 
 const getPercentRatio = (correctData, incorrectData) => {
   const correct = Number(correctData);
-  let incorrect = Number(incorrectData);
-  let result;
-  if (correct && correct > 0) {
-    if (incorrect === null) {
-      incorrect = 0;
-    }
-    result = correct / (correct + incorrect);
-    result = `${Math.round(result * 100)}%`;
-  } else {
-    result = '0%';
+  const incorrect = Number(incorrectData);
+  if (correct > 0) {
+    return `${Math.round((correct / (correct + incorrect)) * 100)}%`;
   }
-  return result;
+  return '0%';
 };
 
 const createStatisticForCard = (card, grid) => {
@@ -341,11 +347,11 @@ const createStatisticForCard = (card, grid) => {
 
   const translation = createSpanWithContent(card.translation);
 
-  const correctData = window.localStorage.getItem(`${card.word}-success`);
-  const correctDataElement = createSpanWithContent(correctData !== null ? correctData : 0);
+  const correctData = window.localStorage.getItem(`${card.word}-success`) || 0;
+  const correctDataElement = createSpanWithContent(correctData);
 
-  const incorrectData = window.localStorage.getItem(`${card.word}-failure`);
-  const incorrectDataElement = createSpanWithContent(incorrectData !== null ? incorrectData : 0);
+  const incorrectData = window.localStorage.getItem(`${card.word}-failure`) || 0;
+  const incorrectDataElement = createSpanWithContent(incorrectData);
 
   const ratio = createSpanWithContent(getPercentRatio(correctData, incorrectData));
 
@@ -377,7 +383,7 @@ const initStatistics = () => {
 };
 
 const getRenderedMenuItems = () => {
-  return categories.map((category) => new MenuItem(category.title).render());
+  categories.map((category) => new MenuItem(category.title).render());
 };
 
 const createSideMenuItems = () => {
@@ -392,27 +398,30 @@ const createSideMenuItems = () => {
   addHtmlComponents(listItems, menuList);
 };
 
+const renderContentByCategoryName = (categoryName) => {
+  setActiveMenuItemByCategoryName(categoryName);
+
+  switch (categoryName) {
+    case MAIN_PAGE: {
+      initMainMenu();
+      break;
+    }
+    case STATISTICS: {
+      initStatistics();
+      break;
+    }
+    default: {
+      initCardsByCategoryName(categoryName);
+    }
+  }
+};
+
 const handleSideMenuClick = (e) => {
   const { target } = e;
   if (target.classList.contains('menu__item')) {
     resetPlayMode();
     const categoryName = target.textContent;
-    setActiveMenuItemByCategoryName(categoryName);
-
-    switch (categoryName) {
-      case MAIN_PAGE: {
-        initMainMenu();
-        break;
-      }
-      case STATISTICS: {
-        initStatistics();
-        break;
-      }
-      default: {
-        initCardsByCategoryName(categoryName);
-      }
-    }
-
+    renderContentByCategoryName(categoryName);
     closeSideMenu();
   }
 };
