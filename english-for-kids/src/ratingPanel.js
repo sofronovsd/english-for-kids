@@ -3,7 +3,7 @@ export class RatingPanel {
     }
 
     render() {
-        return '<div class="main__rating">\n' +
-            '</div>\n';
+        return `<div class="main__rating">\n
+            </div>\n`;
     }
 }

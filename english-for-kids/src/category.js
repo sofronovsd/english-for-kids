@@ -8,8 +8,8 @@ export class Category {
     render() {
         let template = '<a class="main-card main-card_green">\n';
         this.image && (template += `<img src="${this.image}" alt="${this.title}">\n`);
-        template += `${this.title}\n` +
-            `</a>\n`;
+        template += `${this.title}\n
+            </a>\n`;
 
         return template;
     }

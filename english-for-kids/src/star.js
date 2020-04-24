@@ -4,9 +4,7 @@ export class Star {
     }
 
     render() {
-        let template = `\n<div class="star ${this.isWin ? "star_win" : ""}">`;
-        template += '\n</div>';
-
-        return template;
+        return `<div class="star ${this.isWin ? "star_win" : ""}">\n
+            </div>\n`;
     }
 }

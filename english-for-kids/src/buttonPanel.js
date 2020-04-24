@@ -3,8 +3,8 @@ export class ButtonPanel {
     }
 
     render() {
-        return '<div class="main__buttons">\n' +
-            '<button class="button button_hidden">Start Game</button>\n' +
-            '</div>\n';
+        return `<div class="main__buttons">\n
+            <button class="button button_hidden">Start Game</button>\n
+            </div>\n`;
     }
 }
